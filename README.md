@@ -9,9 +9,14 @@ Each weight is paired with a learnable gate score. During the forward pass, gate
 ## Project Structure
 
 ```
+<<<<<<< HEAD
 ├── submission.py
 ├── submission.ipynb
 ├── report.md
+=======
+├── submission.py        # Full training script
+├── report.md            # Analysis and results
+>>>>>>> 4545fb402fb078e08a50c9510bf9104bc9feecf9
 ├── gate_distribution.png
 ├── requirements.txt
 └── .gitignore
