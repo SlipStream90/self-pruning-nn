@@ -46,12 +46,11 @@ class pruned_nn_model(nn.Module):
         return self.neural_net(x)
 
     def sparse_error(self):
-        total, count = 0, 0
+        total= 0
         for m in self.modules():
             if isinstance(m, PrunableLayer):
                 total += torch.sigmoid(m.gate_scores).sum()
-                count += m.gate_scores.numel()
-        return total / count
+        return total
 
 def train(model, lambda_val, epochs=10):
     model.to(device)
@@ -96,7 +95,7 @@ def evaluate(model, threshold=0.1):
 
     return accuracy, sparsity
 
-lambdas = [0.1, 1.0, 5.0]
+lambdas = [1e-4, 1e-3, 1e-2, 1e-1]
 
 results = []
 best_model = None

@@ -1,19 +1,20 @@
 # Self-Pruning Neural Network — CIFAR-10
 
-A feed-forward neural network that learns to prune its own weights during training using learnable gate parameters and sparsity regularization.
+A feed-forward neural network that learns to prune its own weights during training using learnable gate parameters and L1 sparsity regularization.
 
 ## How It Works
 
-Each weight in the network is paired with a learnable gate score. During the forward pass, gate scores are passed through a sigmoid to produce a value between 0 and 1, which is multiplied element-wise with the weights. A sparsity regularization term in the loss function penalizes open gates, forcing the network to decide which weights are worth keeping.
+Each weight is paired with a learnable gate score. During the forward pass, gate scores are passed through a sigmoid to produce a value between 0 and 1, multiplied element-wise with the weights. An L1 sparsity term penalizes open gates, forcing the network to decide which weights are worth keeping.
 
 ## Project Structure
 
 ```
-├── submission.py        # Full training script
-├── submission.ipynb     # Colab-ready notebook version
-├── report.md            # Analysis and results
+├── submission.py
+├── submission.ipynb
+├── report.md
 ├── gate_distribution.png
-└── requirements.txt
+├── requirements.txt
+└── .gitignore
 ```
 
 ## Requirements
@@ -26,26 +27,25 @@ numpy
 tqdm
 ```
 
-Install with:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Running the Code
+## Running
 
 ```bash
 python submission.py
 ```
 
-CIFAR-10 will download automatically to `./data/`. GPU is used automatically if available.
+CIFAR-10 downloads automatically to `./data/`. GPU used automatically if available.
 
-## Results Summary
+## Results
 
-| Lambda | Test Accuracy | Sparsity |
-|--------|--------------|----------|
-| 0.1    | 54.86%       | 0.73%    |
-| 1.0    | 54.11%       | 1.35%    |
-| 5.0    | 55.52%       | 15.53%   |
-| 10.0   | 54.98%       | 36.52%   |
+| Lambda | Test Accuracy | Sparsity (%) |
+|--------|--------------|--------------|
+| 1e-5   | 55.75%       | 54.67%       |
+| 1e-4   | 55.67%       | 97.93%       |
+| 1e-3   | 53.48%       | 99.94%       |
+| 1e-2   | 46.31%       | 100.00%      |
 
-At λ=10.0, the network prunes 36% of its weights while retaining full accuracy — demonstrating that a large fraction of connections are redundant.
+At λ=1e-4, the network prunes 97.93% of its weights while retaining 55.67% accuracy.
