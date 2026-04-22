@@ -95,7 +95,7 @@ def evaluate(model, threshold=0.1):
 
     return accuracy, sparsity
 
-lambdas = [1e-4, 1e-3, 1e-2, 1e-1]
+lambdas = [1e-5, 1e-4, 1e-3, 1e-2]
 
 results = []
 best_model = None
