@@ -52,7 +52,7 @@ class pruned_nn_model(nn.Module):
                 total += torch.sigmoid(m.gate_scores).sum()
         return total
 
-def train(model, lambda_val, epochs=10):
+def train(model, lambda_val, epochs=15):
     model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     criterion = nn.CrossEntropyLoss()
