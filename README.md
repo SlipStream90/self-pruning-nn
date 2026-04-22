@@ -10,7 +10,6 @@ Each weight in the network is paired with a learnable gate score. During the for
 
 ```
 ├── submission.py        # Full training script
-├── submission.ipynb     # Colab-ready notebook version
 ├── report.md            # Analysis and results
 ├── gate_distribution.png
 └── requirements.txt
